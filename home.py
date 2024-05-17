@@ -19,14 +19,14 @@ def init():
 @app.post("/audio")
 async def upload_audio(file: UploadFile):
     answer = None
-    len_nonsilent_ranges = None
+    count_speech_voices = None
     file_name = file.filename.lower()
 
     if file_name.endswith('.mp3'):
         answer = 'mp3'
-        # file_content = await file.read()
-        # with open(f"{file_name}", "wb") as f:
-        #     f.write(file_content)
+        file_content = await file.read()
+        with open(f"{file_name}", "wb") as f:
+            f.write(file_content)
         # audio_mp3 = AudioSegment.from_mp3(file_name)
         # audio_wav = audio_mp3.export("output_audio.wav", format="wav")
     elif file_name.endswith('.wav'):
@@ -34,10 +34,10 @@ async def upload_audio(file: UploadFile):
         file_content = await file.read()
         with open(f"{file_name}", "wb") as f:
             f.write(file_content)
-        len_nonsilent_ranges = modal.transribation(file_name)
+        count_speech_voices = modal.transribation(file_name)
 
     return {
         "file_name":file_name,
         "answer":answer,
-        "len_nonsilent_ranges": len_nonsilent_ranges
+        "count_speech_voices": count_speech_voices
     }
