@@ -1,14 +1,10 @@
 import json
-
 import streamlit as st
 import requests
 
 url="https://pars1vali-rzd-b134.twc1.net/audio"
-st.title("РЖД для служебных переговоров")
 
-uploaded_file = st.file_uploader("Choose a file")
-
-if uploaded_file is not None:
+def send_audio(uploaded_file):
     files = {"file": (uploaded_file.name, uploaded_file.getvalue())}
     response = requests.post(url, files=files)
 
@@ -18,3 +14,12 @@ if uploaded_file is not None:
         st.success(f"File '{uploaded_file.name}' uploaded successfully!")
     else:
         st.error(f"Failed to upload file. Status code: {response.status_code}")
+
+
+st.title("РЖД для служебных переговоров")
+uploaded_file = st.file_uploader("Загрузите аудио")
+
+if uploaded_file is not None:
+    with st.spinner("Обработка"):
+        send_audio(uploaded_file)
+
