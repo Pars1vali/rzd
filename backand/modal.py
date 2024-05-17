@@ -29,6 +29,8 @@ def _trim_audio_speech(noise_audio_file_name):
     _export_nonsilent_chunks(audio, nonsilent_ranges, output_dir="output")
     return len(nonsilent_ranges)
 
-def _transcribe():
+def _voice_regnition():
     pass
+
+
 

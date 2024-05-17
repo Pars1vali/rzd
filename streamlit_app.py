@@ -17,7 +17,7 @@ def send_audio(uploaded_file):
 
 
 st.title("РЖД для служебных переговоров")
-uploaded_file = st.file_uploader("Загрузите аудио")
+uploaded_file = st.file_uploader("Загрузите аудио", type=['wav','mp3'] )
 
 if uploaded_file is not None:
     with st.spinner("Обработка"):
