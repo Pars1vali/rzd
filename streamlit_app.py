@@ -1,3 +1,5 @@
+import json
+
 import streamlit as st
 import requests
 
@@ -11,6 +13,9 @@ if uploaded_file is not None:
     response = requests.post(url, files=files)
 
     if response.status_code == 200:
+        response_json = json.loads(response.text)
+        st.write(response_json)
+
         st.success(f"File '{uploaded_file.name}' uploaded successfully!")
     else:
         st.error(f"Failed to upload file. Status code: {response.status_code}")
