@@ -12,8 +12,6 @@ app = FastAPI(
     title="РЖД проверка служебных переговоров"
 )
 
-
-
 @app.get("/")
 def init():
     return {"text": "Hello World!"}
@@ -22,14 +20,16 @@ def init():
 async def upload_audio(file: UploadFile):
     answer = None
     file_name = file.filename.lower()
+    len_nonsilent_ranges = 0
+
     if file_name.endswith('.mp3'):
+        answer = 'mp3'
         file_content = await file.read()
         with open(f"{file_name}", "wb") as f:
             f.write(file_content)
+
         audio_mp3 = AudioSegment.from_mp3(file_name)
-        audio_wav = audio_mp3.export("output_audio.wav", format="wav")
-        len_nonsilent_ranges = modal.transribation("output_audio.wav")
-        answer =  'mp3'
+        # audio_wav = audio_mp3.export("output_audio.wav", format="wav")
     elif file_name.endswith('.wav'):
         answer = 'wav'
         file_content = await file.read()
