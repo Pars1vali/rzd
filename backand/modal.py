@@ -38,7 +38,7 @@ def _trim_audio_speech(clear_audio, output_directory):
 def _voice_recognition_audio(directory_path):
     def _voice_recognition(speech_file):
         asr_model = nemo_asr.models.EncDecRNNTBPEModel.from_pretrained("nvidia/stt_ru_conformer_transducer_large")
-        text = asr_model.transcribe(['speech_file'])
+        text = asr_model.transcribe([speech_file])
         return text[0]
 
     output = ""
