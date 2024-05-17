@@ -19,6 +19,7 @@ def init():
 @app.post("/audio")
 async def upload_audio(file: UploadFile):
     answer = None
+    len_nonsilent_ranges = None
     file_name = file.filename.lower()
 
     if file_name.endswith('.mp3'):
