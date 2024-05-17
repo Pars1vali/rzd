@@ -6,16 +6,7 @@ from pydub import AudioSegment
 
 url="https://pars1vali-rzd-b134.twc1.net/audio"
 
-def _convert_mp3(file_mp3):
-    audio_mp3 = AudioSegment.from_file(io.BytesIO(file_mp3.read()), format="mp3")
-    audio_wav = audio_mp3.export("output_audio.wav", format="wav")
-    return audio_wav
-
 def send_audio(uploaded_file):
-    file_name = uploaded_file.name.lower()
-    if file_name.endswith('.mp3'):
-        uploaded_file = _convert_mp3(uploaded_file)
-
     files = {"file": (uploaded_file.name, uploaded_file.getvalue())}
     response = requests.post(url, files=files)
 
