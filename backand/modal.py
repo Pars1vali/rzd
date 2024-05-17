@@ -6,8 +6,8 @@ import os
 
 def transribation(audio_file_name):
     noise_audio_file_name  = _remove_noise(audio_file_name)
-    len_nonsilent_ranges = _trim_audio_speech(noise_audio_file_name)
-    return len_nonsilent_ranges
+    count_speech_voices = _trim_audio_speech(noise_audio_file_name)
+    return count_speech_voices
 
 def _remove_noise(audio_file_name):
     denoiser = RNNoise()
