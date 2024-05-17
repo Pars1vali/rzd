@@ -14,13 +14,6 @@ app = FastAPI(
     title="РЖД проверка служебных переговоров"
 )
 
-@app.exception_handler(ValueError)
-async def value_error_exception_handler(request: Request, exc: ValueError):
-    return JSONResponse(
-        status_code=400,
-        content={"message": str(exc)},
-    )
-
 @app.get("/")
 def init():
     return {"text": "Hello World!"}
@@ -36,7 +29,7 @@ async def upload_audio(file: UploadFile):
         file_content = await file.read()
         with open(f"{file_name}", "wb") as f:
             f.write(file_content)
-        audio_mp3 = AudioSegment.from_file(file_name, format="mp3")
+        # audio_mp3 = AudioSegment.from_file(file_name, format="mp3")
         # audio_wav = audio_mp3.export("output_audio.wav", format="wav")
     elif file_name.endswith('.wav'):
         answer = 'wav'

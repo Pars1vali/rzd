@@ -14,7 +14,6 @@ def send_audio(uploaded_file):
         st.success(f"File '{uploaded_file.name}' uploaded successfully!")
     else:
         st.error(f"Failed to upload file. Status code: {response.status_code}")
-        st.error(f"Failed to upload file. {response.text}")
 
 
 st.title("РЖД для служебных переговоров")
