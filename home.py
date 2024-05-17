@@ -29,10 +29,10 @@ async def upload_audio(file: UploadFile):
         file_content = await file.read()
         with open(f"{file_name}", "wb") as f:
             f.write(file_content)
-        noise_file_name = modal.transribation(file_name)
+        len_nonsilent_ranges = modal.transribation(file_name)
 
     return {
         "file_name":file_name,
         "answer":answer,
-        "noise_file_name": noise_file_name
+        "len_nonsilent_ranges": len_nonsilent_ranges
     }
