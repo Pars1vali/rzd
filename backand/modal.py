@@ -2,6 +2,8 @@ from rnnoise_wrapper import RNNoise
 from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 import os
+import nemo.collections.asr as nemo_asr
+asr_model = nemo_asr.models.EncDecRNNTBPEModel.from_pretrained("nvidia/stt_ru_conformer_transducer_large")
 
 
 def transribation(audio_file_name):
@@ -28,4 +30,7 @@ def _trim_audio_speech(noise_audio_file_name):
     nonsilent_ranges = detect_nonsilent(audio, min_silence_len=1000, silence_thresh=-50)
     _export_nonsilent_chunks(audio, nonsilent_ranges, output_dir="output")
     return len(nonsilent_ranges)
+
+def _transcribe():
+    pass
 

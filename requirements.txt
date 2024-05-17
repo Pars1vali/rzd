@@ -6,3 +6,4 @@ git+https://github.com/Desklop/RNNoise_Wrapper
 pydub==0.25.1
 scipy==1.13.0
 numpy
+nemo_toolkit['all']
