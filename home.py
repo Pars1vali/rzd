@@ -3,6 +3,8 @@ import io
 from enum import Enum
 from typing import Union, List, Optional
 from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from pydub import AudioSegment
 from backand import modal
@@ -11,6 +13,13 @@ from backand import modal
 app = FastAPI(
     title="РЖД проверка служебных переговоров"
 )
+
+@app.exception_handler(ValueError)
+async def value_error_exception_handler(request: Request, exc: ValueError):
+    return JSONResponse(
+        status_code=400,
+        content={"message": str(exc)},
+    )
 
 @app.get("/")
 def init():
