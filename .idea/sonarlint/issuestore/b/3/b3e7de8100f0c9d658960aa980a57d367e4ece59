@@ -1,0 +1,31 @@
+
+JWeb:AvoidCommentedOutCodeCheck¨"Remove this commented out code.(ŒÂËŞ
+‰	Web:S6811¡"nThe attribute aria-expanded is not supported by the role navigation. This role is implicit on the element nav.(ÔÓ°£úÿÿÿÿ
+O	Web:S6841¶"9Avoid using positive values for the "tabIndex" attribute.(³¼
+MWeb:ImgWithoutAltCheckÊ"%Add an "alt" attribute to this image.(Õú™±ıÿÿÿÿ
+GWeb:ImgWithoutAltCheckÌ"%Add an "alt" attribute to this image.(Çåñw
+MWeb:ImgWithoutAltCheckú"%Add an "alt" attribute to this image.(ÑÆé¦øÿÿÿÿ
+HWeb:ImgWithoutAltCheckü"%Add an "alt" attribute to this image.(èŠ…ô
+MWeb:ImgWithoutAltCheck¢"%Add an "alt" attribute to this image.(´¤ßÖüÿÿÿÿ
+HWeb:ImgWithoutAltCheck¤"%Add an "alt" attribute to this image.(ÂÓÅ½
+GWeb:ImgWithoutAltCheckà"%Add an "alt" attribute to this image.(Íëä-
+HWeb:ImgWithoutAltCheckâ"%Add an "alt" attribute to this image.(©ú•ÿ
+GWeb:ImgWithoutAltCheck”"%Add an "alt" attribute to this image.(µ™În
+MWeb:ImgWithoutAltCheck–"%Add an "alt" attribute to this image.(ö¨Ãóÿÿÿÿÿ
+‰	Web:S6811¨"nThe attribute aria-expanded is not supported by the role navigation. This role is implicit on the element nav.(ÅÉğëûÿÿÿÿ
+V	Web:S6807¤"AThe attribute "aria-controls" is required by the role "combobox".(ÌÆø+
+N	Web:S6841¤"9Avoid using positive values for the "tabIndex" attribute.(ÌÆø+
+P	Web:S6845¤";"tabIndex" should only be declared on interactive elements.(ÌÆø+
+P	Web:S6845¤";"tabIndex" should only be declared on interactive elements.(ÌÆø+
+Z	Web:S5255·"DAdd an "aria-label" or "aria-labbelledby" attribute to this element.(Ú¸Ï
+_	Web:S5255¡"DAdd an "aria-label" or "aria-labbelledby" attribute to this element.(ÔÓ°£úÿÿÿÿ
+_	Web:S5255¨"DAdd an "aria-label" or "aria-labbelledby" attribute to this element.(ÅÉğëûÿÿÿÿ
+Y	Web:S5255¤"DAdd an "aria-label" or "aria-labbelledby" attribute to this element.(ÌÆø+
+jjavascript:S6957"HReactDOM.render is deprecated since React 18.0.0, use createRoot instead(³ö¼™ÿÿÿÿÿ
+n	css:S4666T"TUnexpected duplicate selector ".fa-layers svg.svg-inline--fa", first used at line 61(Ÿ¼§ıÿÿÿÿ
+v	css:S4666ë"[Unexpected duplicate selector ".wayback-search-1 p.wayback-search", first used at line 1656(‘òä”øÿÿÿÿ
+}	css:S4666ñ"bUnexpected duplicate selector ".wayback-search-1 fieldset.wayback-search", first used at line 1667(Ìüøÿÿÿÿ
+u	css:S4666÷"_Unexpected duplicate selector ".wayback-search-1 input.wayback-search", first used at line 1690(ù†©Ë
+•	css:S4666ƒ"zUnexpected duplicate selector ".wayback-search-1 .search-field.wayback-search svg.wayback-search", first used at line 1714(ê•êúùÿÿÿÿ
+0	css:S1116ï	"Unexpected extra semicolon(ŸúÇ¢
+5	css:S1116…"Unexpected extra semicolon(º„öúúÿÿÿÿ
