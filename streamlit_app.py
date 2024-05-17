@@ -1,3 +1,4 @@
+import io
 import json
 import streamlit as st
 import requests
@@ -6,7 +7,7 @@ from pydub import AudioSegment
 url="https://pars1vali-rzd-b134.twc1.net/audio"
 
 def _convert_mp3(file_mp3):
-    audio_mp3 = AudioSegment.from_file(file_mp3, format="mp3")
+    audio_mp3 = AudioSegment.from_file(io.BytesIO(file_mp3.read()), format="mp3")
     audio_wav = audio_mp3.export("output_audio.wav", format="wav")
     return audio_wav
 
