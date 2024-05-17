@@ -3,6 +3,7 @@ from rnnoise_wrapper import RNNoise
 
 def transribation(audio_file_name):
     noise_audio_file_name  = _remove_noise(audio_file_name)
+    return noise_audio_file_name
 
 def _remove_noise(audio_file_name):
     denoiser = RNNoise()
