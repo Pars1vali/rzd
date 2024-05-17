@@ -1,7 +1,7 @@
 from rnnoise_wrapper import RNNoise
 from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
-import os
+import os, json
 import nemo.collections.asr as nemo_asr
 
 def transribation(audio_file):
@@ -40,12 +40,13 @@ def _voice_recognition_audio(directory_path):
         asr_model = nemo_asr.models.EncDecRNNTBPEModel.from_pretrained("nvidia/stt_ru_conformer_transducer_large")
         text = asr_model.transcribe([speech_file])
         return text[0]
-
-    output = ""
+    output = dict()
+    counter = 0
     for file_name in os.listdir(directory_path):
         file_path = os.path.join(directory_path, file_name)
         if os.path.isfile(file_path):
-            output = output + _voice_recognition(file_path)
-
-    return output
+            text = _voice_recognition(file_path)
+            output[counter]=text
+            counter+=1
+    return json.dumps(output)
 
