@@ -37,7 +37,7 @@ async def upload_audio(file: UploadFile):
         file_content = await file.read()
         with open(f"{file_name}", "wb") as f:
             f.write(file_content)
-        count_speech_voices, text = modal.transribation(file_name)
+        count_speech_voices = modal.transribation(file_name)
 
     return {
         "file_name":file_name,
