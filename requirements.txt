@@ -11,3 +11,4 @@ hydra-core
 pytorch_lightning
 Cython
 librosa
+transformers
