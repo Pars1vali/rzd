@@ -1,7 +1,39 @@
 import json
 from thefuzz import process
 import spacy
+from fuzzywuzzy import process
 
+
+
+def _check_input_frases(dialog):
+    str_count = 2
+    count_first_words = 2
+
+    target_words = ['машинист', 'оператор', 'дежурный']
+    target = {word: False for word in target_words}
+
+    # Удаление пустых строк из диалога
+    dialog = {key: dialog[key] for key in dialog if dialog[key] != ''}
+
+    for i, key in enumerate(dialog):
+        if i >= str_count:
+            break
+        words = dialog[key].split()
+        if len(words) > count_first_words:
+            dialog_str = ' '.join(words[:count_first_words])
+        else:
+            dialog_str = ' '.join(words)
+
+        for el in target_words:
+            match, score = process.extractOne(el, dialog_str.split())
+            if score >= 80:
+                target[el] = True
+    has_true = any(target.values())
+    return has_true
+
+
+
+# Функция для проверки наличия целевых слов в первых нескольких строках текста
 def _detect_special_words(text_json):
     nlp = spacy.load("ru_core_news_sm")
     special_words = ['спасибо', 'пожалуйста', 'здравствуйте', 'здравствуй']
@@ -27,9 +59,6 @@ def _detect_special_words(text_json):
 
     return is_detect, result
 
-def _note_template_speak(text):
-    return False
-
 
 def text_process(text_dict):
     text_json = json.loads(text_dict)
@@ -43,7 +72,7 @@ def text_process(text_dict):
         valid = False
 
     #Оценка соотвествию начала разговора регламенту
-    is_template_error = _note_template_speak(text_json)
+    is_template_error = _check_input_frases(text_json)
     if is_template_error == True:
         type_problem.append("template_error")
         valid = False
