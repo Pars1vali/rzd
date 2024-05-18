@@ -14,4 +14,3 @@ librosa
 transformers
 thefuzz
 spacy
-text_analitic
