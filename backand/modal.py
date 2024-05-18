@@ -6,6 +6,8 @@ import nemo.collections.asr as nemo_asr
 asr_model = nemo_asr.models.EncDecRNNTBPEModel.from_pretrained("nvidia/stt_ru_conformer_transducer_large")
 
 def transribation(audio_file):
+    speech_valid = True
+    type_problem = ["special_word"]
     #Папка где хранятся файлы служебного переговора
     output_directory = "output"
 
@@ -19,7 +21,7 @@ def transribation(audio_file):
     text = _voice_recognition_audio(output_directory)
 
 
-    return count_speech_voices, text
+    return speech_valid, type_problem, text
 
 def _remove_noise(audio_file_name):
     denoiser = RNNoise()

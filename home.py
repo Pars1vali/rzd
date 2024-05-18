@@ -20,23 +20,19 @@ def init():
 
 @app.post("/audio")
 async def upload_audio(file: UploadFile):
-    type = None
-    count_speech_voices = None
-    text = None
+    speech_valid, text, type_problem = None, None, None
     file_name = file.filename.lower()
 
     if file_name.endswith('.mp3'):
-        type = 'mp3'
+        pass
     elif file_name.endswith('.wav'):
-        type = 'wav'
         file_content = await file.read()
         with open(f"{file_name}", "wb") as f:
             f.write(file_content)
-        count_speech_voices, text = modal.transribation(file_name)
+        speech_valid, type_problem, text = modal.transribation(file_name)
 
     return {
-        "file_name":file_name,
-        "type":type,
-        "count_speech_voices": count_speech_voices,
-        "text": text
+        "speech_valid":speech_valid,
+        "text": text,
+        "type_problem":type_problem
     }
