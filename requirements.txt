@@ -12,3 +12,5 @@ pytorch_lightning
 Cython
 librosa
 transformers
+thefuzz
+spacy
