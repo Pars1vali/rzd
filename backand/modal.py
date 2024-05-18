@@ -2,7 +2,7 @@ from rnnoise_wrapper import RNNoise
 from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 import os, json
-import text_analitic
+from backand import text_analitic
 import nemo.collections.asr as nemo_asr
 asr_model = nemo_asr.models.EncDecRNNTBPEModel.from_pretrained("nvidia/stt_ru_conformer_transducer_large")
 
