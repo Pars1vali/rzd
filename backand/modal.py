@@ -64,6 +64,6 @@ def _voice_recognition_audio(directory_path):
             text = _voice_recognition(file_path)
             output[counter]=text
             counter+=1
-    return output
+    return json.dumps(output)
 
 
