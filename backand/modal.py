@@ -2,7 +2,8 @@ from rnnoise_wrapper import RNNoise
 from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 import os, json
-import nemo.collections.asr as nemo_asr
+# import nemo.collections.asr as nemo_asr
+# asr_model = nemo_asr.models.EncDecRNNTBPEModel.from_pretrained("nvidia/stt_ru_conformer_transducer_large")
 
 def transribation(audio_file):
     #Папка где хранятся файлы служебного переговора
@@ -12,8 +13,8 @@ def transribation(audio_file):
     #разделение аудиодорожки на куски с речью
     count_speech_voices = _trim_audio_speech(clear_audio, output_directory)
     #распознование речи в кусках текста
-    text = _voice_recognition_audio(output_directory)
-    return count_speech_voices, text
+    # text = _voice_recognition_audio(output_directory)
+    return count_speech_voices#, text
 
 def _remove_noise(audio_file_name):
     denoiser = RNNoise()
@@ -35,19 +36,22 @@ def _trim_audio_speech(clear_audio, output_directory):
     _export_nonsilent_chunks(audio, nonsilent_ranges, output_dir=output_directory)
     return len(nonsilent_ranges),
 
-def _voice_recognition_audio(directory_path):
-    def _voice_recognition(speech_file):
-        asr_model = nemo_asr.models.EncDecRNNTBPEModel.from_pretrained("nvidia/stt_ru_conformer_transducer_large")
-        text = asr_model.transcribe([speech_file])
-        return text[0][0]
-    output = dict()
-    counter = 0
-    for file_name in os.listdir(directory_path):
-        file_path = os.path.join(directory_path, file_name)
-        if os.path.isfile(file_path):
-            text = _voice_recognition(file_path)
-            output[counter]=text
-            counter+=1
-    return output
+def _volume_up():
+    pass
+
+# def _voice_recognition_audio(directory_path):
+#     def _voice_recognition(speech_file):
+#
+#         text = asr_model.transcribe([speech_file])
+#         return text[0][0]
+#     output = dict()
+#     counter = 0
+#     for file_name in os.listdir(directory_path):
+#         file_path = os.path.join(directory_path, file_name)
+#         if os.path.isfile(file_path):
+#             text = _voice_recognition(file_path)
+#             output[counter]=text
+#             counter+=1
+#     return output
 
 
