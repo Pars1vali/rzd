@@ -28,25 +28,25 @@ def _detect_special_words(text_json):
     return is_detect, result
 
 def _note_template_speak(text):
-    pass
+    return False
 
 
 def text_process(text_dict):
     text_json = json.loads(text_dict)
+    valid = None
+    type_problem = []
+
     # Ищет слова, которые не соответствуют разговору служебному, возвращает есть ли такие слова и проверку каждого предложения для указания ошибки
     is_detect, result = _detect_special_words(text_json)
+    if is_detect == True:
+        type_problem.append("special_words")
+        valid = True
+
     #Оценка соотвествию начала разговора регламенту
-    _note_template_speak(text_json)
-    print(is_detect, result)
-    return is_detect
+    is_template_error = _note_template_speak(text_json)
+    if is_template_error == True:
+        type_problem.append("template_error")
+        valid = True
 
-
-data = {
-    "0": "на утро десять",
-    "1": "",
-    "2": "понятно по первому пути на станции населка",
-    "3": "второй машинист, радельно перегольный красногвардей, загромная здравствуйте машинист, не затягиваетесь, хорошо, до станции сорочинская проедьте пожалуйста по тоцкой, по первому пути будете ехать до мц барного",
-    "4": "а шиленкой на поездной ой на маникрую переходите на окав"
-}
-
+    return valid, type_problem,
 
