@@ -16,7 +16,7 @@ def transribation(audio_file):
     #увеличить громкость голоса говорящих
     louder_audio = _volume_up(clear_audio, 10)
     #разделение аудиодорожки на куски с речью
-    count_speech_voices = _trim_audio_speech(louder_audio, output_directory)
+    _trim_audio_speech(louder_audio, output_directory)
     #распознование речи в кусках текста
     text = _voice_recognition_audio(output_directory)
 
@@ -48,7 +48,6 @@ def _trim_audio_speech(clear_audio, output_directory):
     audio = AudioSegment.from_file(clear_audio, format="wav")
     nonsilent_ranges = detect_nonsilent(audio, min_silence_len=1000, silence_thresh=-50)
     _export_nonsilent_chunks(audio, nonsilent_ranges, output_dir=output_directory)
-    return len(nonsilent_ranges),
 
 def _voice_recognition_audio(directory_path):
     def _voice_recognition(speech_file):
