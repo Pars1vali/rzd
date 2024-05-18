@@ -27,9 +27,9 @@ async def upload_audio(file: UploadFile):
         pass
     elif file_name.endswith('.wav'):
         file_content = await file.read()
-        with open(f"{file_name}", "wb") as f:
+        with open(file_name, "wb") as f:
             f.write(file_content)
-        speech_valid, type_problem, text = modal.transribation(f"{file_name}")
+        speech_valid, type_problem, text = modal.transribation(file_name)
 
     return {
         "speech_valid":speech_valid,
