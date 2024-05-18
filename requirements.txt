@@ -8,3 +8,4 @@ scipy==1.13.0
 numpy
 nemo-toolkit
 hydra-core
+pytorch_lightning
