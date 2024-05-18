@@ -73,7 +73,7 @@ def text_process(text_dict):
 
     #Оценка соотвествию начала разговора регламенту
     is_template_error = _check_input_frases(text_json)
-    if is_template_error == True:
+    if is_template_error != True:
         type_problem.append("template_error")
         valid = False
 
