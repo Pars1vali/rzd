@@ -3,7 +3,7 @@ from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 import os, json
 import nemo.collections.asr as nemo_asr
-# asr_model = nemo_asr.models.EncDecRNNTBPEModel.from_pretrained("nvidia/stt_ru_conformer_transducer_large")
+asr_model = nemo_asr.models.EncDecRNNTBPEModel.from_pretrained("nvidia/stt_ru_conformer_transducer_large")
 
 def transribation(audio_file):
     #Папка где хранятся файлы служебного переговора
