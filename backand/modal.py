@@ -2,6 +2,7 @@ from rnnoise_wrapper import RNNoise
 from pydub import AudioSegment
 from pydub.silence import detect_nonsilent
 import os, json
+import text_analitic
 import nemo.collections.asr as nemo_asr
 asr_model = nemo_asr.models.EncDecRNNTBPEModel.from_pretrained("nvidia/stt_ru_conformer_transducer_large")
 
@@ -19,8 +20,8 @@ def transribation(audio_file):
     chunks_path = _trim_audio_speech(louder_audio, output_directory)
     #распознование речи в кусках текста
     text = _voice_recognition_audio(chunks_path)
-
-    return speech_valid, type_problem, text
+    text_reprocessing = text_analitic.text_process(text)
+    return speech_valid, type_problem, text_reprocessing
 
 def _remove_noise(audio_file_name, output_directory):
     denoiser = RNNoise()

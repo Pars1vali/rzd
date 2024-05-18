@@ -1,5 +1,5 @@
 import datetime
-import io, shutil, os
+import io, os
 from enum import Enum
 from typing import Union, List, Optional
 from fastapi import FastAPI, UploadFile, File
@@ -21,17 +21,15 @@ def init():
 @app.post("/audio")
 async def upload_audio(file: UploadFile):
     speech_valid, text, type_problem = None, None, None
-    input_directory = "input"
     file_name = file.filename.lower()
-    os.makedirs(input_directory, exist_ok=True)
 
     if file_name.endswith('.mp3'):
         pass
     elif file_name.endswith('.wav'):
         file_content = await file.read()
-        with open(f"{input_directory}/{file_name}", "wb") as f:
+        with open(f"{file_name}", "wb") as f:
             f.write(file_content)
-        speech_valid, type_problem, text = modal.transribation(f"{input_directory}/{file_name}")
+        speech_valid, type_problem, text = modal.transribation(f"{file_name}")
 
     return {
         "speech_valid":speech_valid,
