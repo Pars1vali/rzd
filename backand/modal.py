@@ -4,7 +4,6 @@ from pydub.silence import detect_nonsilent
 import os, json
 import nemo.collections.asr as nemo_asr
 asr_model = nemo_asr.models.EncDecRNNTBPEModel.from_pretrained("nvidia/stt_ru_conformer_transducer_large")
-import text_analitic
 
 def transribation(audio_file):
     #Папка где хранятся файлы служебного переговора
@@ -19,9 +18,8 @@ def transribation(audio_file):
     #распознование речи в кусках текста
     text = _voice_recognition_audio(output_directory)
 
-    is_valid_text = text_analitic.text_process(text)
 
-    return count_speech_voices, is_valid_text
+    return count_speech_voices, text
 
 def _remove_noise(audio_file_name):
     denoiser = RNNoise()
