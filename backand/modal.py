@@ -21,7 +21,8 @@ def transribation(audio_file):
     chunks_path = _trim_audio_speech(louder_audio, output_directory)
     #распознование речи в кусках текста
     text = _voice_recognition_audio(chunks_path)
-    speech_valid, type_problem = text_analitic.text_process(text)
+    text_json = json.dumps(text)
+    speech_valid, type_problem = text_analitic.text_process(text_json)
 
     return speech_valid, type_problem, text
 
@@ -65,6 +66,6 @@ def _voice_recognition_audio(directory_path):
             text = _voice_recognition(file_path)
             output[counter]=text
             counter+=1
-    return json.dumps(output)
+    return output
 
 

@@ -33,20 +33,20 @@ def _note_template_speak(text):
 
 def text_process(text_dict):
     text_json = json.loads(text_dict)
-    valid = None
+    valid = True
     type_problem = []
 
     # Ищет слова, которые не соответствуют разговору служебному, возвращает есть ли такие слова и проверку каждого предложения для указания ошибки
     is_detect, result = _detect_special_words(text_json)
     if is_detect == True:
         type_problem.append("special_words")
-        valid = True
+        valid = False
 
     #Оценка соотвествию начала разговора регламенту
     is_template_error = _note_template_speak(text_json)
     if is_template_error == True:
         type_problem.append("template_error")
-        valid = True
+        valid = False
 
     return valid, type_problem,
 
