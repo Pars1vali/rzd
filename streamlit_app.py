@@ -4,7 +4,8 @@ import streamlit as st
 import requests
 from pydub import AudioSegment
 
-url="https://pars1vali-rzd-b134.twc1.net/audio"
+url="pars1vali-rzd-9288.twc1.net/audio"
+
 
 def send_audio(uploaded_file):
     files = {"file": (uploaded_file.name, uploaded_file.getvalue())}
