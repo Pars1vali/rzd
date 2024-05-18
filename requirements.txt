@@ -9,3 +9,5 @@ numpy
 nemo-toolkit
 hydra-core
 pytorch_lightning
+Cython
+librosa
