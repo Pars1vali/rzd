@@ -2,14 +2,12 @@ import json
 from thefuzz import process
 import spacy
 
-
-
 def _check_input_frases(dialog):
     valid = False
     str_count = 2
     count_first_words = 2
 
-    target_words = ['машинист', 'оператор', 'дежурный']
+    target_words = ['внимание', 'машинист', 'оператор', 'дежурный']
     target = {word: False for word in target_words}
 
     # Удаление пустых строк из диалога
@@ -28,10 +26,14 @@ def _check_input_frases(dialog):
             match, score = process.extractOne(el, dialog_str.split())
             if score >= 80:
                 target[el] = True
-    if target['машинист'] == True and (target['оператор'] == True or target['дежурный'] == True):
+    
+    valid = False
+    if target['машинист'] and (target['оператор'] or target['дежурный']):
         valid = True
-    return valid
+    elif target['внимание'] and target['машинист']:
+        valid = True
 
+    return valid
 
 
 # Функция для проверки наличия целевых слов в первых нескольких строках текста
@@ -80,3 +82,13 @@ def text_process(text_dict):
 
     return valid, type_problem,
 
+
+if __name__ == '__main__':
+    print(_check_input_frases({
+    "0": "ынимание машин восемь три четыре",
+    "1": "карта перекроешь",
+    "2": "этим заливной подтянули вплатную психболон",
+    "3": "рядом с чего",
+    "4": "перекрой",
+    "5": ""
+  }))
