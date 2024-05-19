@@ -13,5 +13,4 @@ Cython
 librosa
 transformers
 thefuzz
-fuzzywuzzy
 spacy
