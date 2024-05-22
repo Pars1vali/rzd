@@ -24,7 +24,12 @@ async def upload_audio(file: UploadFile):
     file_name = file.filename.lower()
 
     if file_name.endswith('.mp3'):
-        pass
+        file_content = await file.read()
+        with open(file_name, "wb") as f:
+            f.write(file_content)
+        audio = AudioSegment.from_mp3(file_name)
+        audio.export("output.wav", format="wav")
+        speech_valid, type_problem, text = modal.transribation("output.wav")
     elif file_name.endswith('.wav'):
         file_content = await file.read()
         with open(file_name, "wb") as f:
